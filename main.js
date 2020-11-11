@@ -10,7 +10,6 @@ const player = {
   x: 'X',
   o: 'O',
   e: '_',
-  timer: 0500, //milliseconds
 };
 
 let board = {
@@ -31,15 +30,20 @@ let square = {
   c2: board.c[2],
 };
 
-// const x = '';
-// const o = '';
+let logic = {
+  loopA: true, //outer while loop
+  loopB: true, //inner while loop
+  loopR: true, //reset while loop
+  continue: true, //controls the quit function
+  lg: true, //logic gate [generic flow controller #1]
+  fg: true, //function gate [generic flow controller #2]
+};
 
 let answer; // stores user input from turn to turn
 let setTurn; // converts Math.random to X/Y for first turn
 let currentTurn; // handles current player's turn
 let turnCounter = 0;
 let score = 0;
-let looper;
 
 ///////////////////////////////////////
 /////// Function Definitions //////////
@@ -79,6 +83,8 @@ function turn() {
   }
   console.log(turnCounter);
   turnCounter++;
+
+  return true;
 }
 
 function results() {
@@ -105,7 +111,7 @@ function results() {
   ////////// X Wins! //////////
   /////////////////////////////
     `);
-    endLoop();
+    return false;
   } else if (
     //left to right   [top]
     (board.a[0] === player.o && board.a[1] === player.o && board.a[2] === player.o) ||
@@ -129,7 +135,7 @@ function results() {
     ////////// O Wins! //////////
     /////////////////////////////
     `);
-    endLoop();
+    return false;
   } else if (
     board.a[0] !== player.e &&
     board.a[1] !== player.e &&
@@ -146,9 +152,9 @@ function results() {
     ///////// Tie Game! /////////
     /////////////////////////////
     `);
-    endLoop();
-    // } else {
-    //   turn();
+    return false;
+  } else {
+    return true;
   }
 }
 
@@ -160,14 +166,14 @@ function setSq() {
   });
   if (answer === key && square[key] === player.e) {
     square[key] = currentTurn;
+    logic.loopB = false;
   } else {
     console.log('Enter a valid square...');
+    logic.loopB = true;
   }
 }
 
-function gameStart() {
-  printBoard();
-
+function input() {
   console.log(`It's ${currentTurn}'s turn...`);
   let checkAns = '';
   checkAns = prompt(`
@@ -176,7 +182,7 @@ function gameStart() {
 
   press q to quit...
   `);
-
+  console.log(checkAns, 'checkAns');
   if (
     checkAns === 'a0' ||
     checkAns === 'a1' ||
@@ -189,59 +195,69 @@ function gameStart() {
     checkAns === 'c2'
   ) {
     answer = checkAns;
-    setSq();
-    return false;
+    logic.loopB = false;
   } else if (checkAns === 'q') {
-    endLoop();
+    logic.continue = false;
+    logic.loopB = false;
+    console.log(logic.quit, 'you quit the game...');
   } else if (checkAns === null) {
     console.log(`
   Please enter a valid row and column.
   ex: a0 [row => column]
   `);
-    return true;
+    logic.loopB = true;
   } else {
     console.log(`
   Please enter a valid row and column.
   ex: a0 [row => column]
   `);
-    return true;
+    logic.loopB = true;
+  }
+  console.log(logic.loopB, 'inside function');
+}
+
+function resetGame() {
+  while (loopR) {
+    gameLoop();
   }
 }
 
-// function reset() {
-//   for (let i = 0; i < board.length; i++) {
-//     board.a[i] = player.e;
-//     board.b[i] = player.e;
-//     board.c[i] = player.e;
-//   }
-
-//   score = 0;
-//   turnCounter = 0;
-
-//   gameLoop;
-// }
-function gameLoop() {
-  gameStart();
-  turn();
-  results();
-}
-
-function test() {
-  console.log('counter');
-}
-
-function endLoop() {
-  clearInterval(looper);
-}
 ///////////////////////////////////////
 /////////// Function Calls ////////////
 ///////////////////////////////////////
 
-console.log(`
+function gameLoop() {
+  console.log(`
 /////////////////////////////
 // Welcome to Tic-Tac-Toe! //
 /////////////////////////////
 `);
-setPlayer();
 
-looper = setInterval(gameLoop, 0050);
+  setPlayer();
+  printBoard();
+
+  while (logic.loopA) {
+    //
+    logic.fg = results();
+    if (logic.fg) {
+      while (logic.loopB) {
+        //
+        input();
+        if (logic.continue) setSq();
+        else logic.loopB = false;
+      }
+    }
+    if (!logic.continue) logic.loopA = false;
+    else {
+      if (logic.fg) {
+        printBoard();
+        turn();
+        logic.loopB = true;
+      } else {
+        logic.loopA = false;
+      }
+    }
+  }
+}
+
+gameLoop();
