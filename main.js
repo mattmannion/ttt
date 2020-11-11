@@ -10,7 +10,7 @@ const player = {
   x: 'X',
   o: 'O',
   e: '_',
-  timer: 0, //milliseconds
+  timer: 0500, //milliseconds
 };
 
 let board = {
@@ -37,11 +37,9 @@ let square = {
 let answer; // stores user input from turn to turn
 let setTurn; // converts Math.random to X/Y for first turn
 let currentTurn; // handles current player's turn
-let endGame; // while look boolean
 let turnCounter = 0;
 let score = 0;
-let loop = true;
-let guard = true; //validates function operation between steps
+let looper;
 
 ///////////////////////////////////////
 /////// Function Definitions //////////
@@ -50,13 +48,8 @@ let guard = true; //validates function operation between steps
 function setPlayer() {
   setTurn = Math.trunc(Math.random() * 2);
 
-  if (setTurn === 1) {
-    currentTurn = player.x;
-    console.log('X goes first...');
-  } else {
-    currentTurn = player.o;
-    console.log('O goes first...');
-  }
+  if (setTurn === 1) currentTurn = player.x;
+  else currentTurn = player.o;
 }
 
 function printBoard() {
@@ -81,14 +74,14 @@ c: ${board.c}
 function turn() {
   if (currentTurn === player.x) {
     currentTurn = player.o;
-    console.log("Its O's Turn...");
   } else if (currentTurn === player.o) {
     currentTurn = player.x;
-    console.log("Its X's Turn...");
   }
+  console.log(turnCounter);
+  turnCounter++;
 }
 
-function result() {
+function results() {
   if (
     //left to right   [top]
     (board.a[0] === player.x && board.a[1] === player.x && board.a[2] === player.x) ||
@@ -112,7 +105,7 @@ function result() {
   ////////// X Wins! //////////
   /////////////////////////////
     `);
-    return score++, false;
+    endLoop();
   } else if (
     //left to right   [top]
     (board.a[0] === player.o && board.a[1] === player.o && board.a[2] === player.o) ||
@@ -136,7 +129,7 @@ function result() {
     ////////// O Wins! //////////
     /////////////////////////////
     `);
-    return score++, false;
+    endLoop();
   } else if (
     board.a[0] !== player.e &&
     board.a[1] !== player.e &&
@@ -153,27 +146,36 @@ function result() {
     ///////// Tie Game! /////////
     /////////////////////////////
     `);
-    return false;
-  } else {
-    return true;
+    endLoop();
+    // } else {
+    //   turn();
   }
 }
 
-function setAndCheck() {
+function setSq() {
   let key;
+
   Object.entries(square).forEach(e => {
     if (answer === e[0]) key = e[0];
   });
   if (answer === key && square[key] === player.e) {
     square[key] = currentTurn;
-    turnCounter++;
-    return false;
-  } else console.log('Enter a valid square...');
+  } else {
+    console.log('Enter a valid square...');
+  }
 }
 
 function gameStart() {
+  printBoard();
+
+  console.log(`It's ${currentTurn}'s turn...`);
   let checkAns = '';
-  checkAns = prompt('Enter the desired free space');
+  checkAns = prompt(`
+  It's ${currentTurn}'s turn...
+  Enter the desired free space:
+
+  press q to quit...
+  `);
 
   if (
     checkAns === 'a0' ||
@@ -187,53 +189,23 @@ function gameStart() {
     checkAns === 'c2'
   ) {
     answer = checkAns;
-    console.log('upper', checkAns);
-
+    setSq();
     return false;
+  } else if (checkAns === 'q') {
+    endLoop();
   } else if (checkAns === null) {
-    console.log('null', checkAns);
     console.log(`
   Please enter a valid row and column.
   ex: a0 [row => column]
   `);
-
     return true;
   } else {
-    console.log('lower', checkAns);
     console.log(`
   Please enter a valid row and column.
   ex: a0 [row => column]
   `);
-
     return true;
   }
-}
-
-// Only lets a function pass if it completes correctly
-function stepGuard(func) {
-  if (guard) {
-    // while (guard) {}
-    guard = func;
-    return 1;
-  } else {
-    console.log('Unexpected Failure...');
-    return 0;
-  }
-}
-
-function gameLoop() {
-  loop = true;
-  // Set Empty Board and Initialize X or O
-  console.log(`
-  /////////////////////////////
-  // Welcome to Tic-Tac-Toe! //
-  /////////////////////////////
-  `);
-  printBoard();
-  setPlayer();
-
-  console.log(stepGuard(gameStart()));
-  // while (loop) {}
 }
 
 // function reset() {
@@ -248,9 +220,28 @@ function gameLoop() {
 
 //   gameLoop;
 // }
+function gameLoop() {
+  gameStart();
+  turn();
+  results();
+}
 
+function test() {
+  console.log('counter');
+}
+
+function endLoop() {
+  clearInterval(looper);
+}
 ///////////////////////////////////////
 /////////// Function Calls ////////////
 ///////////////////////////////////////
 
-gameLoop();
+console.log(`
+/////////////////////////////
+// Welcome to Tic-Tac-Toe! //
+/////////////////////////////
+`);
+setPlayer();
+
+looper = setInterval(gameLoop, 0050);
