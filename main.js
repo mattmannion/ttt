@@ -33,14 +33,12 @@ let square = {
 let logic = {
   loopA: true, //outer while loop
   loopB: true, //inner while loop
-  loopR: true, //reset while loop
   continue: true, //controls the quit function
   lg: true, //logic gate [generic flow controller #1]
   fg: true, //function gate [generic flow controller #2]
 };
 
 let answer; // stores user input from turn to turn
-let resetAns; //stores y/n for game restart
 let setTurn; // converts Math.random to X/Y for first turn
 let currentTurn; // handles current player's turn
 
