@@ -38,7 +38,7 @@ let logic = {
   fg: true, //function gate [generic flow controller #2]
 };
 
-const setTurn; // converts Math.random to X/Y for first turn
+let setTurn; // converts Math.random to X/Y for first turn
 let answer; // stores user input from turn to turn
 let currentTurn; // handles current player's turn
 
