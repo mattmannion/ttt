@@ -38,8 +38,8 @@ let logic = {
   fg: true, //function gate [generic flow controller #2]
 };
 
+const setTurn; // converts Math.random to X/Y for first turn
 let answer; // stores user input from turn to turn
-let setTurn; // converts Math.random to X/Y for first turn
 let currentTurn; // handles current player's turn
 
 ///////////////////////////////////////
@@ -73,11 +73,8 @@ c: ${board.c}
 }
 
 function turn() {
-  if (currentTurn === player.x) {
-    currentTurn = player.o;
-  } else if (currentTurn === player.o) {
-    currentTurn = player.x;
-  }
+  if (currentTurn === player.x) currentTurn = player.o;
+  else if (currentTurn === player.o) currentTurn = player.x;
 }
 
 function results() {
@@ -146,9 +143,7 @@ function results() {
     /////////////////////////////
     `);
     return false;
-  } else {
-    return true;
-  }
+  } else return true;
 }
 
 function setSq() {
@@ -218,11 +213,9 @@ function gameLoop() {
   printBoard();
 
   while (logic.loopA) {
-    //
     logic.fg = results();
     if (logic.fg) {
       while (logic.loopB) {
-        //
         input();
         if (logic.continue) setSq();
         else logic.loopB = false;
@@ -234,9 +227,7 @@ function gameLoop() {
         printBoard();
         turn();
         logic.loopB = true;
-      } else {
-        logic.loopA = false;
-      }
+      } else logic.loopA = false;
     }
   }
 }
