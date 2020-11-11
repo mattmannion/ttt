@@ -1,5 +1,5 @@
 //
-//  WELCOME TO TIC-TAC-TOE // PROMPT-CONSOLE EDITION
+//  WELCOME TO TIC-TAC-TOE // CONSOLE-PROMPT-EDITION
 //
 
 ///////////////////////////////////////
@@ -40,10 +40,9 @@ let logic = {
 };
 
 let answer; // stores user input from turn to turn
+let resetAns; //stores y/n for game restart
 let setTurn; // converts Math.random to X/Y for first turn
 let currentTurn; // handles current player's turn
-let turnCounter = 0;
-let score = 0;
 
 ///////////////////////////////////////
 /////// Function Definitions //////////
@@ -81,10 +80,6 @@ function turn() {
   } else if (currentTurn === player.o) {
     currentTurn = player.x;
   }
-  console.log(turnCounter);
-  turnCounter++;
-
-  return true;
 }
 
 function results() {
@@ -180,9 +175,10 @@ function input() {
   It's ${currentTurn}'s turn...
   Enter the desired free space:
 
-  press q to quit...
+  Enter "Q/q" to Quit.
+
+  Open your browser's console to play.
   `);
-  console.log(checkAns, 'checkAns');
   if (
     checkAns === 'a0' ||
     checkAns === 'a1' ||
@@ -196,29 +192,16 @@ function input() {
   ) {
     answer = checkAns;
     logic.loopB = false;
-  } else if (checkAns === 'q') {
+  } else if (checkAns === 'q' || checkAns === 'Q' || checkAns === null) {
     logic.continue = false;
     logic.loopB = false;
-    console.log(logic.quit, 'you quit the game...');
-  } else if (checkAns === null) {
-    console.log(`
-  Please enter a valid row and column.
-  ex: a0 [row => column]
-  `);
-    logic.loopB = true;
+    console.log('you quit the game...');
   } else {
     console.log(`
   Please enter a valid row and column.
   ex: a0 [row => column]
   `);
     logic.loopB = true;
-  }
-  console.log(logic.loopB, 'inside function');
-}
-
-function resetGame() {
-  while (loopR) {
-    gameLoop();
   }
 }
 
