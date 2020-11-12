@@ -73,7 +73,7 @@ c: ${board.c}
 
 function turn() {
   if (currentTurn === player.x) currentTurn = player.o;
-  else if (currentTurn === player.o) currentTurn = player.x;
+  else currentTurn = player.x;
 }
 
 function results() {
