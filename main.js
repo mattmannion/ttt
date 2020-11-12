@@ -167,7 +167,7 @@ function input() {
   It's ${currentTurn}'s turn...
   Enter the desired free space:
 
-  Enter "Q/q" to Quit.
+  Enter "q" to Quit.
 
   Open your browser's console to play.
   `);
@@ -203,14 +203,13 @@ function input() {
 
 function gameLoop() {
   console.log(`
-/////////////////////////////
-// Welcome to Tic-Tac-Toe! //
-/////////////////////////////
-`);
+  /////////////////////////////
+  // Welcome to Tic-Tac-Toe! //
+  /////////////////////////////
+  `);
 
   setPlayer();
   printBoard();
-
   while (logic.loopA) {
     logic.fc = results();
     if (logic.fc) {
@@ -230,5 +229,4 @@ function gameLoop() {
     }
   }
 }
-
 gameLoop();
