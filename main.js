@@ -34,8 +34,7 @@ let logic = {
   loopA: true, //outer while loop
   loopB: true, //inner while loop
   continue: true, //controls the quit function
-  lg: true, //logic gate [generic flow controller #1]
-  fg: true, //function gate [generic flow controller #2]
+  fc: true, //logic gate [generic flow controller]
 };
 
 let setTurn; // converts Math.random to X/Y for first turn
@@ -213,8 +212,8 @@ function gameLoop() {
   printBoard();
 
   while (logic.loopA) {
-    logic.fg = results();
-    if (logic.fg) {
+    logic.fc = results();
+    if (logic.fc) {
       while (logic.loopB) {
         input();
         if (logic.continue) setSq();
@@ -223,7 +222,7 @@ function gameLoop() {
     }
     if (!logic.continue) logic.loopA = false;
     else {
-      if (logic.fg) {
+      if (logic.fc) {
         printBoard();
         turn();
         logic.loopB = true;
