@@ -7,15 +7,15 @@
 ///////////////////////////////////////
 
 const player = {
-  x: "X",
-  o: "O",
-  e: "_",
+  x: 'X',
+  o: 'O',
+  e: '_',
 };
 
 let board = {
-  a: ["_", "_", "_"],
-  b: ["_", "_", "_"],
-  c: ["_", "_", "_"],
+  a: ['_', '_', '_'],
+  b: ['_', '_', '_'],
+  c: ['_', '_', '_'],
 };
 
 let square = {
@@ -79,37 +79,21 @@ function turn() {
 function results() {
   if (
     //left to right   [top]
-    (board.a[0] === player.x &&
-      board.a[1] === player.x &&
-      board.a[2] === player.x) ||
+    (board.a[0] === player.x && board.a[1] === player.x && board.a[2] === player.x) ||
     //left to right   [middle]
-    (board.b[0] === player.x &&
-      board.b[1] === player.x &&
-      board.b[2] === player.x) ||
+    (board.b[0] === player.x && board.b[1] === player.x && board.b[2] === player.x) ||
     //left to right   [bottom]
-    (board.c[0] === player.x &&
-      board.c[1] === player.x &&
-      board.c[2] === player.x) ||
+    (board.c[0] === player.x && board.c[1] === player.x && board.c[2] === player.x) ||
     //top left to bottom right [diagonal]
-    (board.a[0] === player.x &&
-      board.b[1] === player.x &&
-      board.c[2] === player.x) ||
+    (board.a[0] === player.x && board.b[1] === player.x && board.c[2] === player.x) ||
     //bottom left to top right [diagonal]
-    (board.a[2] === player.x &&
-      board.b[1] === player.x &&
-      board.c[0] === player.x) ||
+    (board.a[2] === player.x && board.b[1] === player.x && board.c[0] === player.x) ||
     //top to bottom   [left]
-    (board.a[0] === player.x &&
-      board.b[0] === player.x &&
-      board.c[0] === player.x) ||
+    (board.a[0] === player.x && board.b[0] === player.x && board.c[0] === player.x) ||
     //top to bottom   [middle]
-    (board.a[1] === player.x &&
-      board.b[1] === player.x &&
-      board.c[1] === player.x) ||
+    (board.a[1] === player.x && board.b[1] === player.x && board.c[1] === player.x) ||
     //top to bottom   [right]
-    (board.a[2] === player.x &&
-      board.b[2] === player.x &&
-      board.c[2] === player.x)
+    (board.a[2] === player.x && board.b[2] === player.x && board.c[2] === player.x)
   ) {
     console.log(`
   /////////////////////////////
@@ -119,37 +103,21 @@ function results() {
     return false;
   } else if (
     //left to right   [top]
-    (board.a[0] === player.o &&
-      board.a[1] === player.o &&
-      board.a[2] === player.o) ||
+    (board.a[0] === player.o && board.a[1] === player.o && board.a[2] === player.o) ||
     //left to right   [middle]
-    (board.b[0] === player.o &&
-      board.b[1] === player.o &&
-      board.b[2] === player.o) ||
+    (board.b[0] === player.o && board.b[1] === player.o && board.b[2] === player.o) ||
     //left to right   [bottom]
-    (board.c[0] === player.o &&
-      board.c[1] === player.o &&
-      board.c[2] === player.o) ||
+    (board.c[0] === player.o && board.c[1] === player.o && board.c[2] === player.o) ||
     //top left to bottom right [diagonal]
-    (board.a[0] === player.o &&
-      board.b[1] === player.o &&
-      board.c[2] === player.o) ||
+    (board.a[0] === player.o && board.b[1] === player.o && board.c[2] === player.o) ||
     //bottom left to top right [diagonal]
-    (board.a[2] === player.o &&
-      board.b[1] === player.o &&
-      board.c[0] === player.o) ||
+    (board.a[2] === player.o && board.b[1] === player.o && board.c[0] === player.o) ||
     //top to bottom   [left]
-    (board.a[0] === player.o &&
-      board.b[0] === player.o &&
-      board.c[0] === player.o) ||
+    (board.a[0] === player.o && board.b[0] === player.o && board.c[0] === player.o) ||
     //top to bottom   [middle]
-    (board.a[1] === player.o &&
-      board.b[1] === player.o &&
-      board.c[1] === player.o) ||
+    (board.a[1] === player.o && board.b[1] === player.o && board.c[1] === player.o) ||
     //top to bottom   [right]
-    (board.a[2] === player.o &&
-      board.b[2] === player.o &&
-      board.c[2] === player.o)
+    (board.a[2] === player.o && board.b[2] === player.o && board.c[2] === player.o)
   ) {
     console.log(`
     /////////////////////////////
@@ -180,21 +148,21 @@ function results() {
 function setSq() {
   let key;
 
-  Object.entries(square).forEach((e) => {
+  Object.entries(square).forEach(e => {
     if (answer === e[0]) key = e[0];
   });
   if (answer === key && square[key] === player.e) {
     square[key] = currentTurn;
     logic.loopB = false;
   } else {
-    console.log("Enter a valid square...");
+    console.log('Enter a valid square...');
     logic.loopB = true;
   }
 }
 
 function input() {
   console.log(`It's ${currentTurn}'s turn...`);
-  let checkAns = "";
+  let checkAns = '';
   checkAns = prompt(`
   It's ${currentTurn}'s turn...
   Enter the desired free space:
@@ -204,22 +172,22 @@ function input() {
   Open your browser's console to play.
   `);
   if (
-    checkAns === "a0" ||
-    checkAns === "a1" ||
-    checkAns === "a2" ||
-    checkAns === "b0" ||
-    checkAns === "b1" ||
-    checkAns === "b2" ||
-    checkAns === "c0" ||
-    checkAns === "c1" ||
-    checkAns === "c2"
+    checkAns === 'a0' ||
+    checkAns === 'a1' ||
+    checkAns === 'a2' ||
+    checkAns === 'b0' ||
+    checkAns === 'b1' ||
+    checkAns === 'b2' ||
+    checkAns === 'c0' ||
+    checkAns === 'c1' ||
+    checkAns === 'c2'
   ) {
     answer = checkAns;
     logic.loopB = false;
-  } else if (checkAns === "q" || checkAns === "Q" || checkAns === null) {
+  } else if (checkAns === 'q' || checkAns === 'Q' || checkAns === null) {
     logic.continue = false;
     logic.loopB = false;
-    console.log("you quit the game...");
+    console.log('you quit the game...');
   } else {
     console.log(`
   Please enter a valid row and column.
