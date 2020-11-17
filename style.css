@@ -10,16 +10,17 @@
 
 * {
   font-family: 'Dancing Script', cursive;
+  margin: 0;
   background-color: #111;
   color: #ccc;
-  margin: 0;
   padding: 0;
 }
 
 header {
   margin-top: 2%;
+  position: fixed;
   text-align: center;
-  left: var(--div-width);
+  left: 38.5%;
 }
 
 /* 
