@@ -6,6 +6,7 @@
 
 :root {
   --div-width: 40.5%;
+  --box-border: 2px solid #ccc;
 }
 
 * {
@@ -60,45 +61,45 @@ main {
 
 .sq0 {
   grid-area: sq0;
-  border-right: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
+  border-right: var(--box-border);
+  border-bottom: var(--box-border);
 }
 .sq1 {
   grid-area: sq1;
-  border-right: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
+  border-right: var(--box-border);
+  border-bottom: var(--box-border);
 }
 .sq2 {
   grid-area: sq2;
 
-  border-bottom: 1px solid #ccc;
+  border-bottom: var(--box-border);
 }
 .sq3 {
   grid-area: sq3;
 
-  border-right: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
+  border-right: var(--box-border);
+  border-bottom: var(--box-border);
 }
 .sq4 {
   grid-area: sq4;
 
-  border-right: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
+  border-right: var(--box-border);
+  border-bottom: var(--box-border);
 }
 .sq5 {
   grid-area: sq5;
 
-  border-bottom: 1px solid #ccc;
+  border-bottom: var(--box-border);
 }
 .sq6 {
   grid-area: sq6;
 
-  border-right: 1px solid #ccc;
+  border-right: var(--box-border);
 }
 .sq7 {
   grid-area: sq7;
 
-  border-right: 1px solid #ccc;
+  border-right: var(--box-border);
 }
 .sq8 {
   grid-area: sq8;
