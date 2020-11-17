@@ -200,32 +200,3 @@ function input() {
 ///////////////////////////////////////
 /////////// Function Calls ////////////
 ///////////////////////////////////////
-
-function gameLoop() {
-  console.log(`
-  /////////////////////////////
-  // Welcome to Tic-Tac-Toe! //
-  /////////////////////////////
-  `);
-
-  setPlayer();
-  printBoard();
-  while (logic.loopA) {
-    logic.fc = results();
-    if (logic.fc) {
-      while (logic.loopB) {
-        input();
-        if (logic.continue) setSq();
-        else logic.loopB = false;
-      }
-    }
-    if (!logic.continue) logic.loopA = false;
-    else {
-      if (logic.fc) {
-        printBoard();
-        turn();
-        logic.loopB = true;
-      } else logic.loopA = false;
-    }
-  }
-}

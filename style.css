@@ -5,10 +5,11 @@
 */
 
 :root {
-  --div-width: 40%;
+  --div-width: 40.5%;
 }
 
 * {
+  font-family: 'Dancing Script', cursive;
   background-color: #111;
   color: #ccc;
   margin: 0;
@@ -16,9 +17,8 @@
 }
 
 header {
+  margin-top: 2%;
   text-align: center;
-  position: fixed;
-  top: 2%;
   left: var(--div-width);
 }
 
@@ -112,18 +112,26 @@ main {
 section {
   position: fixed;
   top: 75%;
-  margin-left: 90px;
+  margin-left: 75px;
   left: var(--div-width);
   text-align: center;
 }
 
 button {
   padding: 5px 25px;
+  font-size: 24px;
   font-weight: 700;
   background-color: #ccc;
   color: #111;
-  border: 3px solid #111;
-  border-radius: 15px;
+  border: none;
+  border-radius: 25px;
+  transition: background 0.25s, color 0.25s;
+}
+
+button:active,
+button:hover {
+  background-color: #000;
+  color: #ccc;
 }
 
 button:focus {
@@ -142,8 +150,9 @@ button:focus {
 
 footer {
   text-align: center;
+  font-weight: 700;
   position: fixed;
   top: 90%;
-  margin-left: 90px;
+  margin-left: 65px;
   left: var(--div-width);
 }
