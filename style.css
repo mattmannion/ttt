@@ -1,5 +1,149 @@
+/* 
+///////////////////////////////////////
+////////// Header and Body ////////////
+///////////////////////////////////////
+*/
+
+:root {
+  --div-width: 40%;
+}
+
 * {
   background-color: #111;
   color: #ccc;
-  text-align: left;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  text-align: center;
+  position: fixed;
+  top: 2%;
+  left: var(--div-width);
+}
+
+/* 
+///////////////////////////////////////
+////////////// Squares ////////////////
+///////////////////////////////////////
+*/
+
+main {
+  position: fixed;
+  top: 30%;
+  left: var(--div-width);
+}
+
+.cont {
+  margin: 0;
+  padding: 0;
+  float: left;
+  display: grid;
+  grid-template-areas:
+    'sq0 sq1 sq2'
+    'sq3 sq4 sq5'
+    'sq6 sq7 sq8';
+}
+
+#sq {
+  height: 100px;
+  width: 100px;
+}
+
+#sq p {
+  font-size: 48px;
+  line-height: 2;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.sq0 {
+  grid-area: sq0;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+.sq1 {
+  grid-area: sq1;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+.sq2 {
+  grid-area: sq2;
+
+  border-bottom: 1px solid #ccc;
+}
+.sq3 {
+  grid-area: sq3;
+
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+.sq4 {
+  grid-area: sq4;
+
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+.sq5 {
+  grid-area: sq5;
+
+  border-bottom: 1px solid #ccc;
+}
+.sq6 {
+  grid-area: sq6;
+
+  border-right: 1px solid #ccc;
+}
+.sq7 {
+  grid-area: sq7;
+
+  border-right: 1px solid #ccc;
+}
+.sq8 {
+  grid-area: sq8;
+}
+
+/* 
+///////////////////////////////////////
+////////////// Buttons ////////////////
+///////////////////////////////////////
+*/
+
+section {
+  position: fixed;
+  top: 75%;
+  margin-left: 90px;
+  left: var(--div-width);
+  text-align: center;
+}
+
+button {
+  padding: 5px 25px;
+  font-weight: 700;
+  background-color: #ccc;
+  color: #111;
+  border: 3px solid #111;
+  border-radius: 15px;
+}
+
+button:focus {
+  outline: 0;
+}
+
+.reset {
+  margin-top: 15px;
+}
+
+/* 
+///////////////////////////////////////
+/////////////// Footer ////////////////
+///////////////////////////////////////
+*/
+
+footer {
+  text-align: center;
+  position: fixed;
+  top: 90%;
+  margin-left: 90px;
+  left: var(--div-width);
 }

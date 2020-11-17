@@ -2,24 +2,44 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="style.css" />
+    <script defer src="main.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tic-tac-toe</title>
   </head>
   <body>
-    <h1>Tic-tac-toe</h1>
-    <br />
-    <br />
-    <p><i>Open your browser's console to play.</i></p>
-    <br />
-    <p><i>Refresh the page to play again.</i></p>
-    <br />
-    <p>
-      <i
-        >Works best on firefox. <br />
-        On Chrome quit and refresh the page.</i
-      >
-    </p>
-    <script defer src="main.js"></script>
+    <header>
+      <h1 class="welcome">Welcome to Tic-Tac-Toe</h1>
+      <br />
+      <br />
+      <h2 class="scores">X = <span class="scoreX">0</span> | O = <span class="scoreO">0</span></h2>
+      <br />
+      <br />
+      <h2 class="ticker"></h2>
+    </header>
+
+    <main>
+      <div class="cont">
+        <div class="sq0" id="sq"><p>&nbsp;</p></div>
+        <div class="sq1" id="sq"><p>&nbsp;</p></div>
+        <div class="sq2" id="sq"><p>&nbsp;</p></div>
+        <div class="sq3" id="sq"><p>&nbsp;</p></div>
+        <div class="sq4" id="sq"><p>&nbsp;</p></div>
+        <div class="sq5" id="sq"><p>&nbsp;</p></div>
+        <div class="sq6" id="sq"><p>&nbsp;</p></div>
+        <div class="sq7" id="sq"><p>&nbsp;</p></div>
+        <div class="sq8" id="sq"><p>&nbsp;</p></div>
+      </div>
+    </main>
+
+    <section>
+      <button class="again">Play Again</button>
+      <br />
+      <button class="reset">Reset</button>
+    </section>
+
+    <footer>
+      <p>Matt Mannion 2020&copy;</p>
+    </footer>
   </body>
 </html>
